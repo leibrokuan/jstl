@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <filter>
+        <filter-name>testFilter</filter-name>
+        <filter-class>MyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>testFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <!--//
+       /*表示拦截所有请求
+      *.do 表示所有以.do 结尾的请求
+      /ts  表示拦截指定url的请求 针对某个servlet进行拦截保护-->
+    </filter-mapping>
+<!-- 浏览器发起请求到服务器 服务器接收请求后根据uri信息在web.xml中找到对应的
+过滤器执行doFilter方法 处理后如果符合要求则方形 放行后如果还有符合要求的过滤
+器则继续进行过滤 最终执行servlet  之后一级一级返回至最大的过滤器
+
+应用：    统一编码格式设置
+          session管理
+          权限管理
+          资源管理(统一水印  和谐词汇)
+-->
+    <!--配置监听器-->
+    <listener>
+        <listener-class>Listener.MyListener</listener-class>
+    </listener>
+</web-app>
